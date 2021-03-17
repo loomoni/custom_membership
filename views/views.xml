@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+<!--    tree tree  -->
+    <record id="register_form_tree_view" model="ir.ui.view">
+        <field name="name">register.form.view</field>
+        <field name="model">form.registration</field>
+        <field name="arch" type="xml">
+            <tree string="Register Members">
+                <field name="name"/>
+                <field name="certificate"/>
+                <field name="year_establishment"/>
+                <field name="business_no"/>
+                <field name="company_status"/>
+                <field name="chairperson_name"/>
+                <field name="executive_name"/>
+            </tree>
+        </field>
+    </record>
+
+<!--    form view -->
+   <record id="register_form_form_view" model="ir.ui.view">
+       <field name="name">register.form.form.view</field>
+       <field name="model">form.registration</field>
+       <field name="arch" type="xml">
+           <form string="Register Members">
+               <sheet>
+                   <div class="oe_title">
+                        <h1>
+                           Registration Form
+                        </h1>
+                    </div>
+                   <group string="Member Details">
+                       <group>
+                           <field name="name"/>
+                           <field name="certificate"/>
+                           <field name="year_establishment"/>
+                           <field name="business_no"/>
+                       </group>
+                       <group>
+                           <field name="company_status"/>
+                           <field name="chairperson_name"/>
+                           <field name="executive_name"/>
+                       </group>
+                   </group>
+                   <group>
+                        <group>
+                            <field name="date_registration"/>
+                            <field name="copy_registration_certificate_attachment" filename="copy_registration_certificate_file_name"/>
+                            <field name="copy_registration_certificate_file_name" invisible="1"/>
+                        </group>
+                   </group>
+               </sheet>
+               <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+           </form>
+       </field>
+   </record>
+
+    <record id="registration_action" model="ir.actions.act_window">
+        <field name="name">Registration</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">form.registration</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+          <p class="o_view_nocontent_smiling_face">
+            <!-- Add Text Here -->
+          </p><p>
+            <!-- More details about what a user can do with this object will be OK -->
+          </p>
+        </field>
+    </record>
+
+<!--    Payment part-->
+<!--    Tree View -->
+    <record id="payment_tree_view" model="ir.ui.view">
+        <field name="name">Payment</field>
+        <field name="model">payment</field>
+        <field name="arch" type="xml">
+            <tree string="">
+                <field name="name"/>
+                <field name="fee_amount"/>
+                <field name="type"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+<!--    Form View -->
+   <record id="payment_form_view" model="ir.ui.view">
+       <field name="name">Payment</field>
+       <field name="model">payment</field>
+       <field name="arch" type="xml">
+           <form string="">
+               <header>
+                   <button name="button_approve" string="Proved" class="oe_highlight" states="draft" type="object"/>
+                   <field name="state" widget="statusbar" statusbar_visible="draft,unpaid,partial,paid" statusbar_colors="{'KEY_IS_STATE':'VALUE_IS_COLOR'}"/>
+               </header>
+               <sheet>
+                   <group>
+                       <group>
+                        <field name="name"/>
+                        <field name="fee_amount"/>
+                       </group>
+                      <group>
+                        <field name="type"/>
+                      </group>
+                   </group>
+               </sheet>
+               <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+           </form>
+       </field>
+   </record>
+
+<!-- kaban view    -->
+    <record id="payment_kanban_view" model="ir.ui.view">
+     <field name="name">Payment</field>
+      <field name="model">payment</field>
+     <field name="arch" type="xml">
+        <kanban>
+           <field name="name"/>
+           <field name="fee_amount"/>
+           <field name="type"/>
+           <field name="state"/>
+             <templates>
+             <t t-name="kanban-box">
+                  <div class="oe_kanban_global_click">
+                              <div class="o_kanban_image">
+<!--                                  <img t-att-src="kanban_image('property.management', 'image_small', record.id.raw_value)" alt="Property"/>-->
+                              </div>
+                              <div class="oe_kanban_details">
+                                  <strong class="o_kanban_record_title">
+                                      <field name="name"/>
+                                  </strong>
+                                  <div name="tags"/>
+                                  <ul>
+                                      <li>Fees Amount: <field name="fee_amount" /></li>
+                                  </ul>
+                                  <div name="tags"/>
+                                  <strong>
+                                      <field name="state"/>
+                                  </strong>
+                                  <div name="tags"/>
+                              </div>
+                          </div>
+             </t>
+             </templates>
+        </kanban>
+     </field>
+    </record>
+
+<!--    action view -->
+    <record id="payment_action_view" model="ir.actions.act_window">
+        <field name="name">Payment</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">payment</field>
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="help" type="html">
+          <p class="o_view_nocontent_smiling_face">
+            <!-- Add Text Here -->
+          </p><p>
+            <!-- More details about what a user can do with this object will be OK -->
+          </p>
+        </field>
+    </record>
+
+
+    <!-- This Menu Item will appear in the Upper bar, That's why It needs NO parent or action -->
+    <menuitem id="membership_root" name="Membership" sequence="1"/>
+    <!-- This Menu Item must have a parent and an action -->
+    <menuitem id="registration_id" name="Registration" parent="membership_root" action="registration_action" sequence="1"/>
+    <!-- This Menu Item must have a parent and an action -->
+    <menuitem id="payment_id" name="Payment" parent="membership_root" action="payment_action_view" sequence="2"/>
+    <!-- This Menu Item must have a parent and an action -->
+    <menuitem id="configuration_id" name="Configuration" parent="membership_root" action="registration_action" sequence="3"/>
+
+</odoo>

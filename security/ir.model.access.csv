@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+access_registration_form,Register Membership,model_form_registration,,1,1,1,1
+
+access_payment,Membership payment,model_payment,,1,1,1,1
