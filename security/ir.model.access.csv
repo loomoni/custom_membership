@@ -3,3 +3,7 @@ id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_registration_form,Register Membership,model_form_registration,,1,1,1,1
 
 access_payment,Membership payment,model_payment,,1,1,1,1
+
+access_directors_line,Add Directors,model_directors_lines,,1,1,1,1
+
+access_business_description_line,Add description,model_business_description,,1,1,1,1

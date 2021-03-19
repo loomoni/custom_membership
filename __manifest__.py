@@ -8,9 +8,10 @@
     'website': "http://www.tpsftz.org/",
     'depends': ['account', 'base', 'sale', 'board', 'base_setup', 'product', 'analytic', 'portal', 'digest'],
     'data': [
-        'views/views.xml',
         'security/security.xml',
         'security/ir.model.access.csv',
+        'views/views.xml',
+        'views/contact_inherit.xml',
     ],
     'qweb': [
     ],
