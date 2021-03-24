@@ -52,8 +52,12 @@
                            <field name="sector_industry"/>
                            <field name="membership_cat"/>
                            <field name="applicable_fee"/>
+                           <field name="annual_fee"/>
                         </group>
                    </group>
+                    <group string="BANK INFORMATION">
+                        <p>All payments should be made through CRDB Bank, Azikiwe Branch A/C No. 01J1027043900.</p>
+                    </group>
                    <notebook>
                        <page string="Directors">
                            <field name="directors_line_ids">
@@ -119,8 +123,8 @@
        <field name="arch" type="xml">
            <form string="">
                <header>
-                   <button name="button_approve" string="Proved" class="oe_highlight" states="draft" type="object"/>
-                   <field name="state" widget="statusbar" statusbar_visible="draft,unpaid,partial,paid" statusbar_colors="{'KEY_IS_STATE':'VALUE_IS_COLOR'}"/>
+                   <button name="button_approve" string="paid" class="oe_highlight" states="unpaid" type="object"/>
+                   <field name="state" widget="statusbar" statusbar_visible="unpaid,partial,paid" statusbar_colors="{'KEY_IS_STATE':'VALUE_IS_COLOR'}"/>
                </header>
                <sheet>
                    <group>
@@ -217,6 +221,8 @@
                 <sheet>
                     <group>
                         <field name="name"/>
+                        <field name="registration_fee"/>
+                        <field name="annual_subscription_fee"/>
                     </group>
                 </sheet>
             </form>

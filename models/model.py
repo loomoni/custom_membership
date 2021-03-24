@@ -20,7 +20,8 @@ class FormRegistration(models.Model):
     date_registration = fields.Date(string="Date of Registration", required=False, )
     sector_industry = fields.Many2one(comodel_name="configuration.setting.industry", string="Sector/ Industry", required=False, )
     membership_cat = fields.Many2one(comodel_name="configuration.setting.category", string="Membership Category", required=False, )
-    applicable_fee = fields.Char(string="Applicable Fees", required=False, )
+    applicable_fee = fields.Float(string="Applicable Fees", related="membership_cat.registration_fee", required=False, )
+    annual_fee = fields.Float(string="Annual Fees", related="membership_cat.annual_subscription_fee", required=False, )
 
     directors_line_ids = fields.One2many(comodel_name="directors.lines", inverse_name="directors_id",
                                          string="Directors", required=False, )
@@ -53,15 +54,15 @@ class Payment(models.Model):
     _inherit = ['mail.thread', 'mail.activity.mixin']
     _description = "Record payment table"
 
-    name = fields.Char(string="Name", required=True, )
-    fee_amount = fields.Float(string="Amount", required=True, )
-    type = fields.Selection(string="Type", selection=[('one', 'One Time'), ('annual', 'Annual'), ], required=True, )
-    state = fields.Selection(string="Status", selection=[('draft', 'Draft'),
-                                                         ('unpaid', 'Unpaid'),
+    name = fields.Many2one(comodel_name="form.registration", string="Name", required=False, )
+    fee_amount = fields.Float(string="Amount", related="name.annual_fee", required=True, )
+    type = fields.Selection(string="Type", selection=[('annual', 'Annual'), ], required=True, )
+    state = fields.Selection(string="Status", selection=[('unpaid', 'Unpaid'),
                                                          ('partial', 'Partial Paid'),
                                                          ('paid', 'Paid'),
                                                          ], track_visibility='onchange',
-                             readonly=True, required=True, copy=False, default='draft')
+                             readonly=True, required=True, copy=False, default='unpaid')
+
 
     @api.multi
     def button_approve(self):
@@ -75,6 +76,8 @@ class ConfigurationSettingCategory(models.Model):
     _rec_name = "name"
 
     name = fields.Char(string="Category name", required=True, )
+    registration_fee = fields.Float(string="Registration Fee",  required=False, )
+    annual_subscription_fee = fields.Float(string="Annual Subscription Fee",  required=False, )
 
 
 class ConfigurationSettingCluster (models.Model):
