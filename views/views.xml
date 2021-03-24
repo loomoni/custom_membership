@@ -48,6 +48,11 @@
                             <field name="copy_registration_certificate_attachment" filename="copy_registration_certificate_file_name"/>
                             <field name="copy_registration_certificate_file_name" invisible="1"/>
                         </group>
+                        <group>
+                           <field name="sector_industry"/>
+                           <field name="membership_cat"/>
+                           <field name="applicable_fee"/>
+                        </group>
                    </group>
                    <notebook>
                        <page string="Directors">
@@ -189,13 +194,125 @@
         </field>
     </record>
 
-    <record id="configuration_action" model="ir.actions.act_window">
-        <field name="name">configuration</field>
+<!--    Configuration Setting file starts -->
+
+<!--    Categories configuratio part start -->
+
+    <record id="category_tree_view_id" model="ir.ui.view">
+        <field name="name">category.tree.view</field>
+        <field name="model">configuration.setting.category</field>
+        <field name="arch" type="xml">
+            <tree string="">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+<!--    form view -->
+    <record id="category_form_view_id" model="ir.ui.view">
+        <field name="name">category.form.view</field>
+        <field name="model">configuration.setting.category</field>
+        <field name="arch" type="xml">
+            <form string="Category">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="category_action_id" model="ir.actions.act_window">
+        <field name="name">Category</field>
         <field name="type">ir.actions.act_window</field>
-        <field name="res_model">res.config.settings</field>
-        <field name="view_mode">form</field>
+        <field name="res_model">configuration.setting.category</field>
+        <field name="view_mode">tree,form</field>
         <field name="help" type="html">
           <p class="oe_view_nocontent_create">
+            <!-- Add Text Here -->
+          </p><p>
+            <!-- More details about what a user can do with this object will be OK -->
+          </p>
+        </field>
+    </record>
+<!--    Categories configuration part end -->
+
+<!--    Cluster Configuration Starts -->
+    <record id="cluster_tree_view" model="ir.ui.view">
+        <field name="name">cluster.tree.view</field>
+        <field name="model">configuration.setting.cluster</field>
+        <field name="arch" type="xml">
+            <tree string="Cluster">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+<!--    cluster form view -->
+    <record id="cluster_form_view_id" model="ir.ui.view">
+        <field name="name">cluster.form.view</field>
+        <field name="model">configuration.setting.cluster</field>
+        <field name="arch" type="xml">
+            <form string="Cluster">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="cluster_action_id" model="ir.actions.act_window">
+        <field name="name">Cluster</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">configuration.setting.cluster</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+          <p class="o_view_nocontent_smiling_face">
+            <!-- Add Text Here -->
+          </p><p>
+            <!-- More details about what a user can do with this object will be OK -->
+          </p>
+        </field>
+    </record>
+<!--    End of Cluster configuration Setting-->
+
+<!--    Industry Configuration Starts -->
+    <record id="industry_tree_view" model="ir.ui.view">
+        <field name="name">industry.tree.view</field>
+        <field name="model">configuration.setting.industry</field>
+        <field name="arch" type="xml">
+            <tree string="Industry">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+<!--    industry form view -->
+    <record id="industry_form_view" model="ir.ui.view">
+        <field name="name">industry.form.view</field>
+        <field name="model">configuration.setting.industry</field>
+        <field name="arch" type="xml">
+            <form string="Industry">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+<!--    industry action view  -->
+    <record id="industry_action_view_id" model="ir.actions.act_window">
+        <field name="name">Industry</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">configuration.setting.industry</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+          <p class="o_view_nocontent_smiling_face">
             <!-- Add Text Here -->
           </p><p>
             <!-- More details about what a user can do with this object will be OK -->
@@ -211,6 +328,12 @@
     <!-- This Menu Item must have a parent and an action -->
     <menuitem id="payment_id" name="Payment" parent="membership_root" action="payment_action_view" sequence="2"/>
     <!-- This Menu Item must have a parent and an action -->
-    <menuitem id="configuration_id" name="Configuration" parent="membership_root" action="configuration_action" sequence="3"/>
+    <menuitem id="configuration_id" name="Configuration" parent="membership_root" sequence="3"/>
+    <!-- This Menu Item must have a parent and an action -->
+    <menuitem id="category_menu_action" name="Categories" parent="configuration_id" action="category_action_id" sequence="1"/>
+    <!-- This Menu Item must have a parent and an action -->
+    <menuitem id="cluster_menu_action" name="Cluster" parent="configuration_id" action="cluster_action_id" sequence="2"/>
+    <!-- This Menu Item must have a parent and an action -->
+    <menuitem id="industry_menu_action" name="Industry" parent="configuration_id" action="industry_action_view_id" sequence="3"/>
 
 </odoo>

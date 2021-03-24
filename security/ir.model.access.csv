@@ -7,3 +7,10 @@ access_payment,Membership payment,model_payment,,1,1,1,1
 access_directors_line,Add Directors,model_directors_lines,,1,1,1,1
 
 access_business_description_line,Add description,model_business_description,,1,1,1,1
+
+access_industry_type,Industry Type,model_configuration_setting_industry,,1,1,1,1
+
+access_cluster,Add Cluster,model_configuration_setting_cluster,,1,1,1,1
+
+access_category,Add Category,model_configuration_setting_category,,1,1,1,1
+

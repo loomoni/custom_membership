@@ -18,10 +18,15 @@ class FormRegistration(models.Model):
                                                              store=True, )
     copy_registration_certificate_file_name = fields.Char('Copy registration certificate File Name')
     date_registration = fields.Date(string="Date of Registration", required=False, )
+    sector_industry = fields.Many2one(comodel_name="configuration.setting.industry", string="Sector/ Industry", required=False, )
+    membership_cat = fields.Many2one(comodel_name="configuration.setting.category", string="Membership Category", required=False, )
+    applicable_fee = fields.Char(string="Applicable Fees", required=False, )
 
     directors_line_ids = fields.One2many(comodel_name="directors.lines", inverse_name="directors_id",
                                          string="Directors", required=False, )
-    business_description_ids = fields.One2many(comodel_name="business.description", inverse_name="business_description_id", string="Business Description", required=False, )
+    business_description_ids = fields.One2many(comodel_name="business.description",
+                                               inverse_name="business_description_id", string="Business Description",
+                                               required=False, )
 
 
 class DirectorsLines(models.Model):
@@ -39,7 +44,8 @@ class BusinessDescription(models.Model):
     _description = "business description table"
 
     business_description = fields.Text(string="Business Description", required=False, )
-    business_description_id = fields.Many2one(comodel_name="form.registration", string="Business Description Id", required=False, )
+    business_description_id = fields.Many2one(comodel_name="form.registration", string="Business Description Id",
+                                              required=False, )
 
 
 class Payment(models.Model):
@@ -61,3 +67,35 @@ class Payment(models.Model):
     def button_approve(self):
         self.write({'state': 'paid'})
         return True
+
+
+class ConfigurationSettingCategory(models.Model):
+    _name = "configuration.setting.category"
+    _description = "configuration setting table category"
+    _rec_name = "name"
+
+    name = fields.Char(string="Category name", required=True, )
+
+
+class ConfigurationSettingCluster (models.Model):
+    _name = "configuration.setting.cluster"
+    _description = "configuration setting table cluster "
+    _rec_name = "name"
+
+    name = fields.Char(string="Cluster name", required=True,)
+
+
+class ConfigurationSettingIndustry(models.Model):
+    _name = "configuration.setting.industry"
+    _description = "configuration setting table cluster "
+    _rec_name = "name"
+
+    name = fields.Char(string="Industry Type", required=True, )
+
+
+# class ConfigurationSettingCluster(models.Model):
+#     _name = "configuration.setting.cluster"
+#     _description = "configuration setting table cluster "
+#     _rec_name = "name"
+
+    # name = fields.Char(string="Cluster name", required=False, )
