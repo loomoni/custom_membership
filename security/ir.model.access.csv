@@ -14,3 +14,7 @@ access_cluster,Add Cluster,model_configuration_setting_cluster,,1,1,1,1
 
 access_category,Add Category,model_configuration_setting_category,,1,1,1,1
 
+access_general_contact,Add General Contact and Adress,model_general_contact,,1,1,1,1
+
+access_contact_title,Add contact Title,model_contact_title,,1,1,1,1
+
