@@ -21,6 +21,7 @@ class FormRegistration(models.Model):
     date_registration = fields.Date(string="Date of Registration", required=False, )
     sector_industry = fields.Many2one(comodel_name="configuration.setting.industry", string="Sector/ Industry",
                                       required=False, )
+    cluster_id = fields.Many2one(comodel_name="configuration.setting.cluster", string="Cluster", required=False, )
     membership_cat = fields.Many2one(comodel_name="configuration.setting.category", string="Membership Category",
                                      required=False, )
     applicable_fee = fields.Float(string="Registration Fees", related="membership_cat.registration_fee",
@@ -224,7 +225,7 @@ class Payment(models.Model):
     reg_fee = fields.Float(string="registration fee", related="name.applicable_fee", required=False, )
     annual_fee = fields.Float(string="annual fee", related="name.annual_fee", required=False, )
     fee_amount = fields.Float(string="Amount", required=True, compute="amount_required")
-    amount_paid = fields.Float(string="Amount Paid", required=False, )
+    amount_paid = fields.Float(string="Amount Paid", required=False, compute="amount_paid_compute", readonly=True)
     amount_remain = fields.Float(string="Amount Remain", required=False, compute="compute_amount_remain_unpaid")
     pay_year = fields.Integer(string="For Year ", required=True, )
     pay_date = fields.Date(string="Payment Date", required=False, )
@@ -238,6 +239,16 @@ class Payment(models.Model):
                                                          ], track_visibility='onchange',
                              readonly=True, required=True, copy=False, default='unpaid')
     is_active = fields.Boolean(string="Active", default=False)
+    payment_lines_ids = fields.One2many(comodel_name="payment.lines", inverse_name="payment_id", string="Payment Lines",
+                                        required=False, )
+
+    @api.depends('payment_lines_ids.amount_payment')
+    def amount_paid_compute(self):
+        for record in self:
+            paid = 0
+            for line in record.payment_lines_ids:
+                paid += line.amount_payment
+            record.amount_paid = paid
 
     @api.depends('type', 'annual_fee', 'reg_fee')
     def amount_required(self):
@@ -256,7 +267,7 @@ class Payment(models.Model):
     def button_approve(self):
         for rec in self:
             if rec.amount_paid != rec.fee_amount:
-                raise ValidationError(_("Fee amount should be equal to paid amount"))
+                raise ValidationError(_("Fee amount should be equal to paid amount, Payment is marked as Partial Payment"))
         self.write({'state': 'paid'})
         return True
 
@@ -270,6 +281,17 @@ class Payment(models.Model):
                 raise ValidationError(_("Amount Paid should be less or equal to fee amount"))
         self.write({'state': 'partial'})
         return True
+
+
+class PaymentsLines(models.Model):
+    _name = "payment.lines"
+    _description = "payments line records table"
+
+    amount_payment = fields.Float(string="Amount Paid", required=False, )
+    payment_date = fields.Date(string="Date", required=False, )
+    receipt = fields.Binary(string="Receipt", attachment=True,  store=True, )
+    receipt_file_name = fields.Char('Receipt File Name')
+    payment_id = fields.Many2one(comodel_name="payment", string="Payment ID", required=False, )
 
 
 class ConfigurationSettingCategory(models.Model):

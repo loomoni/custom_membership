@@ -18,3 +18,5 @@ access_general_contact,Add General Contact and Adress,model_general_contact,,1,1
 
 access_contact_title,Add contact Title,model_contact_title,,1,1,1,1
 
+access_payment_lines,Add Payment,model_payment_lines,,1,1,1,1
+
