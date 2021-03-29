@@ -219,6 +219,7 @@
             <tree string="">
                 <field name="name"/>
                 <field name="type"/>
+                <field name="pay_year"/>
                 <field name="fee_amount"/>
                 <field name="amount_paid"/>
                 <field name="amount_remain"/>
@@ -279,6 +280,37 @@
         </field>
     </record>
 
+<!--    payment graph view -->
+    <record id="payment_graph_view_id" model="ir.ui.view">
+        <field name="name">payment.graph</field>
+        <field name="model">payment</field>
+        <field name="arch" type="xml">
+            <graph string="Payment Graph">
+                <field name="name"/>
+                <field name="amount_paid" type="measure"/>
+                <field name="reg_fee" type="measure"/>
+                <field name="annual_fee" type="measure"/>
+                <field name="fee_amount" type="measure"/>
+                <field name="amount_remain" type="measure"/>
+                <field name="pay_year" type="measure"/>
+                <field name="type" type="measure"/>
+            </graph>
+        </field>
+    </record>
+
+<!--    payment Calendar view -->
+        <record id="payment_calendar_view_id" model="ir.ui.view">
+        <field name="name">payment.calendar</field>
+        <field name="model">payment</field>
+        <field name="arch" type="xml">
+            <calendar string="Payment Calendar" date_start="pay_date" mode="month">
+                <field name="name"/>
+                <field name="pay_date"/>
+            </calendar>
+        </field>
+    </record>
+
+
     <!-- kanban view    -->
     <record id="payment_kanban_view" model="ir.ui.view">
         <field name="name">Payment</field>
@@ -324,7 +356,7 @@
         <field name="name">Payment</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">payment</field>
-        <field name="view_mode">tree,kanban,form</field>
+        <field name="view_mode">tree,kanban,calendar,form,graph,pivot</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
                 <!-- Add Text Here -->
