@@ -7,6 +7,7 @@
         <field name="arch" type="xml">
             <tree string="Register Members">
                 <field name="name"/>
+                <field name="membership_number"/>
                 <field name="certificate"/>
                 <field name="year_establishment"/>
                 <field name="business_no"/>
@@ -32,6 +33,7 @@
                     <group string="Member Details">
                         <group>
                             <field name="name"/>
+                            <field name="membership_number"/>
                             <field name="certificate"/>
                             <field name="year_establishment"/>
                             <field name="business_no"/>
@@ -218,11 +220,13 @@
         <field name="arch" type="xml">
             <tree string="">
                 <field name="name"/>
+                <field name="category"/>
+                <field name="cluster"/>
                 <field name="type"/>
                 <field name="pay_year"/>
-                <field name="fee_amount"/>
-                <field name="amount_paid"/>
-                <field name="amount_remain"/>
+                <field name="fee_amount" sum="Fee Amount"/>
+                <field name="amount_paid" sum="Amount Paid"/>
+                <field name="amount_remain" sum="Amount Remain"/>
 <!--                <field name="is_active"/>-->
                 <field name="state"/>
             </tree>
@@ -246,6 +250,8 @@
                     <group>
                         <group>
                             <field name="name"/>
+                            <field name="category"/>
+                            <field name="cluster"/>
                             <field name="fee_amount"/>
                             <field name="pay_year"/>
 
@@ -281,22 +287,16 @@
     </record>
 
 <!--    payment graph view -->
-    <record id="payment_graph_view_id" model="ir.ui.view">
-        <field name="name">payment.graph</field>
-        <field name="model">payment</field>
-        <field name="arch" type="xml">
-            <graph string="Payment Graph">
-                <field name="name"/>
-                <field name="amount_paid" type="measure"/>
-                <field name="reg_fee" type="measure"/>
-                <field name="annual_fee" type="measure"/>
-                <field name="fee_amount" type="measure"/>
-                <field name="amount_remain" type="measure"/>
-                <field name="pay_year" type="measure"/>
-                <field name="type" type="measure"/>
-            </graph>
-        </field>
-    </record>
+    <record  id="view_payment_graph" model="ir.ui.view">
+            <field name="name">payment.graph</field>
+            <field name="model">payment</field>
+            <field name="arch" type="xml">
+                <graph string="Payments">
+                    <field name="name"/>
+                    <field name="amount_paid" type="measure"/>
+                </graph>
+            </field>
+        </record>
 
 <!--    payment Calendar view -->
         <record id="payment_calendar_view_id" model="ir.ui.view">

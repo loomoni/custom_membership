@@ -12,6 +12,7 @@
         'security/ir.model.access.csv',
         'views/views.xml',
         'views/contact_inherit.xml',
+        'views/invoice_inherity_view.xml',
     ],
     'qweb': [
     ],
