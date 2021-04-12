@@ -11,6 +11,7 @@
                 <field name="certificate"/>
                 <field name="year_establishment"/>
                 <field name="business_no"/>
+                <field name="membership_cat"/>
                 <field name="company_status"/>
                 <field name="chairperson_name"/>
                 <field name="executive_name"/>

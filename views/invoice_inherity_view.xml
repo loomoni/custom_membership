@@ -8,19 +8,35 @@
         <field name="inherit_id" ref="account.invoice_form"/>
         <field name="arch" type="xml">
 
-            <xpath expr="//field[@name='payment_term_id']" position="before">
-                <field name="members"/>
-                <field name="reg_payment"/>
-                <field name="annual_payment"/>
-            </xpath>
+<!--            <xpath expr="//field[@name='payment_term_id']" position="before">-->
+<!--                <field name="partern_id"/>-->
+<!--                <field name="members"/>-->
+<!--                <field name="reg_payment"/>-->
+<!--                <field name="annual_payment"/>-->
+<!--            </xpath>-->
             <xpath expr="//field[@name='partner_id']" position="attributes">
-<!--                <attribute name="string">Customer Name</attribute>-->
-                <field name="required">0</field>
-                <attribute name="invisible">1</attribute>
+                <attribute name="string">Company</attribute>
+                <attribute name="required">0</attribute>
+<!--                <attribute name="invisible">1</attribute>-->
             </xpath>
 <!--            <xpath expr="//field[@name='team_id']" position="attributes">-->
 <!--                <attribute name="invisible">1</attribute>-->
 <!--            </xpath>-->
+        </field>
+    </record>
+
+    <record id="invoice_tree_inherit" model="ir.ui.view">
+        <field name="name">invoice.tree.inherit</field>
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="account.invoice_tree_with_onboarding"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//field[@name='partner_id']" position="attributes">
+<!--                <attribute name="string">Customer Name</attribute>-->
+                <attribute name="required">0</attribute>
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
         </field>
     </record>
 

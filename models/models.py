@@ -62,7 +62,7 @@ class FormRegistration(models.Model):
     #                                                  ('2099', '2099'), ('3000', '3000'), ],
     #                                       required=False, )
 
-    business_no = fields.Integer(string="Business License No", required=False, )
+    business_no = fields.Char(string="Business License No", required=False, )
     company_status = fields.Selection(string="Company Status",
                                       selection=[('private', 'Private'), ('public', 'Public'), ], required=False, )
     chairperson_name = fields.Char(string="Chairperson Name", required=False, )
