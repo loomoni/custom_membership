@@ -24,3 +24,7 @@ access_engagement,Add engagement,model_engagement,,1,1,1,1
 
 access_engagement_type,engagement type,model_engagement_type,,1,1,1,1
 
+access_issue,Add issues,model_issue,,1,1,1,1
+
+access_issue_type,Add issue type,model_issue_type,,1,1,1,1
+

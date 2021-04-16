@@ -679,135 +679,135 @@
         </field>
     </record>
 
-<!--    issues type tree view -->
-<!--    <record id="issues_type_tree_view" model="ir.ui.view">-->
-<!--        <field name="name">issues.type.tree.view</field>-->
-<!--        <field name="model">issue.type</field>-->
-<!--        <field name="arch" type="xml">-->
-<!--            <tree string="Issues">-->
-<!--                <field name="name"/>-->
-<!--            </tree>-->
-<!--        </field>-->
-<!--    </record>-->
+    issues type tree view
+    <record id="issues_type_tree_view" model="ir.ui.view">
+        <field name="name">issues.type.tree.view</field>
+        <field name="model">issue.type</field>
+        <field name="arch" type="xml">
+            <tree string="Issues">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
 
-<!--    issues type form view -->
-<!--    <record id="issues_type_form_view" model="ir.ui.view">-->
-<!--        <field name="name">issues.type.form.view</field>-->
-<!--        <field name="model">issue.type</field>-->
-<!--        <field name="arch" type="xml">-->
-<!--            <form string="Issues Type">-->
-<!--                <sheet>-->
-<!--                    <group>-->
-<!--                        <field name="name"/>-->
-<!--                    </group>-->
-<!--                </sheet>-->
-<!--            </form>-->
-<!--        </field>-->
-<!--    </record>-->
+    issues type form view
+    <record id="issues_type_form_view" model="ir.ui.view">
+        <field name="name">issues.type.form.view</field>
+        <field name="model">issue.type</field>
+        <field name="arch" type="xml">
+            <form string="Issues Type">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
 
-<!--&lt;!&ndash;    issues type action View &ndash;&gt;-->
-<!--    <record id="issues_type_action_view_id" model="ir.actions.act_window">-->
-<!--        <field name="name">Issues Type</field>-->
-<!--        <field name="type">ir.actions.act_window</field>-->
-<!--        <field name="res_model">issue.type</field>-->
-<!--        <field name="view_mode">tree,form</field>-->
-<!--        <field name="help" type="html">-->
-<!--          <p class="o_view_nocontent_smiling_face">-->
-<!--            &lt;!&ndash; Add Text Here &ndash;&gt;-->
-<!--          </p><p>-->
-<!--            &lt;!&ndash; More details about what a user can do with this object will be OK &ndash;&gt;-->
-<!--            Create new issue Type-->
-<!--          </p>-->
-<!--        </field>-->
-<!--    </record>-->
+<!--    issues type action View -->
+    <record id="issues_type_action_view_id" model="ir.actions.act_window">
+        <field name="name">Issues Type</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">issue.type</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+          <p class="o_view_nocontent_smiling_face">
+            <!-- Add Text Here -->
+          </p><p>
+            <!-- More details about what a user can do with this object will be OK -->
+            Create new issue Type
+          </p>
+        </field>
+    </record>
 
-<!--&lt;!&ndash;    issue tree view &ndash;&gt;-->
-<!--    <record id="issue_tree_view" model="ir.ui.view">-->
-<!--        <field name="name">issue.tree.view</field>-->
-<!--        <field name="model">issue</field>-->
-<!--        <field name="arch" type="xml">-->
-<!--            <tree string="Issues">-->
-<!--                <field name="name"/>-->
-<!--                <field name="member_other"/>-->
-<!--                <field name="location_name"/>-->
-<!--                <field name="issue_type_id"/>-->
-<!--                <field name="received_by"/>-->
-<!--                <field name="date"/>-->
-<!--            </tree>-->
-<!--        </field>-->
-<!--    </record>-->
+<!--    issue tree view -->
+    <record id="issue_tree_view" model="ir.ui.view">
+        <field name="name">issue.tree.view</field>
+        <field name="model">issue</field>
+        <field name="arch" type="xml">
+            <tree string="Issues">
+                <field name="name"/>
+                <field name="member_other"/>
+                <field name="location_name"/>
+                <field name="issue_type_id"/>
+                <field name="received_by"/>
+                <field name="date"/>
+            </tree>
+        </field>
+    </record>
 
-<!--&lt;!&ndash;    issue form view &ndash;&gt;-->
-<!--    <record id="issue_form_view" model="ir.ui.view">-->
-<!--        <field name="name">issue.form.view</field>-->
-<!--        <field name="model">issue</field>-->
-<!--        <field name="arch" type="xml">-->
-<!--            <form string="Issues">-->
-<!--                <sheet>-->
-<!--                    <group>-->
-<!--                        <group>-->
-<!--                            <field name="name"/>-->
-<!--                            <field name="member_other"/>-->
-<!--                            <field name="issue_type_id"/>-->
-<!--                            <field name="received_by"/>-->
-<!--                            <field name="date"/>-->
-<!--                        </group>-->
-<!--                        <group>-->
-<!--                            <field name="region"/>-->
-<!--                            <field name="arusha_districts" attrs="{'invisible':[('region', '!=', 'arusha')]}"/>-->
-<!--                            <field name="dar_districts" attrs="{'invisible':[('region', '!=', 'dar')]}"/>-->
-<!--                            <field name="dodoma_districts" attrs="{'invisible':[('region', '!=', 'dodoma')]}"/>-->
-<!--                            <field name="geita_districts" attrs="{'invisible':[('region', '!=', 'geita')]}"/>-->
-<!--                            <field name="iringa_districts" attrs="{'invisible':[('region', '!=', 'iringa')]}"/>-->
-<!--                            <field name="kagera_districts" attrs="{'invisible':[('region', '!=', 'kagera')]}"/>-->
-<!--                            <field name="katavi_districts" attrs="{'invisible':[('region', '!=', 'katavi')]}"/>-->
-<!--                            <field name="kigoma_districts" attrs="{'invisible':[('region', '!=', 'kigoma')]}"/>-->
-<!--                            <field name="kilimanjaro_districts"-->
-<!--                                   attrs="{'invisible':[('region', '!=', 'kilimanjaro')]}"/>-->
-<!--                            <field name="lindi_districts" attrs="{'invisible':[('region', '!=', 'lindi')]}"/>-->
-<!--                            <field name="manyara_districts" attrs="{'invisible':[('region', '!=', 'manyara')]}"/>-->
-<!--                            <field name="mara_districts" attrs="{'invisible':[('region', '!=', 'mara')]}"/>-->
-<!--                            <field name="mbeya_districts" attrs="{'invisible':[('region', '!=', 'mbeya')]}"/>-->
-<!--                            <field name="morogoro_districts" attrs="{'invisible':[('region', '!=', 'morogoro')]}"/>-->
-<!--                            <field name="mtwara_districts" attrs="{'invisible':[('region', '!=', 'mtwara')]}"/>-->
-<!--                            <field name="mwanza_districts" attrs="{'invisible':[('region', '!=', 'mwanza')]}"/>-->
-<!--                            <field name="njombe_districts" attrs="{'invisible':[('region', '!=', 'njombe')]}"/>-->
-<!--                            <field name="pwani_districts" attrs="{'invisible':[('region', '!=', 'pwani')]}"/>-->
-<!--                            <field name="rukwa_districts" attrs="{'invisible':[('region', '!=', 'rukwa')]}"/>-->
-<!--                            <field name="ruvuma_districts" attrs="{'invisible':[('region', '!=', 'ruvuma')]}"/>-->
-<!--                            <field name="shinyanga_districts" attrs="{'invisible':[('region', '!=', 'shinyanga')]}"/>-->
-<!--                            <field name="simiyu_districts" attrs="{'invisible':[('region', '!=', 'simiyu')]}"/>-->
-<!--                            <field name="singida_districts" attrs="{'invisible':[('region', '!=', 'singida')]}"/>-->
-<!--                            <field name="songwe_districts" attrs="{'invisible':[('region', '!=', 'songwe')]}"/>-->
-<!--                            <field name="tabora_districts" attrs="{'invisible':[('region', '!=', 'tabora')]}"/>-->
-<!--                            <field name="tanga_districts" attrs="{'invisible':[('region', '!=', 'tanga')]}"/>-->
-<!--                            <field name="location_name"/>-->
-<!--                        </group>-->
-<!--                        <group>-->
-<!--                            <field name="issue_summary"/>-->
-<!--                            <field name="conclusion"/>-->
-<!--                        </group>-->
-<!--                    </group>-->
-<!--                </sheet>-->
-<!--            </form>-->
-<!--        </field>-->
-<!--    </record>-->
+<!--    issue form view -->
+    <record id="issue_form_view" model="ir.ui.view">
+        <field name="name">issue.form.view</field>
+        <field name="model">issue</field>
+        <field name="arch" type="xml">
+            <form string="Issues">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="member_other"/>
+                            <field name="issue_type_id"/>
+                            <field name="received_by"/>
+                            <field name="date"/>
+                        </group>
+                        <group>
+                            <field name="region"/>
+                            <field name="arusha_districts" attrs="{'invisible':[('region', '!=', 'arusha')]}"/>
+                            <field name="dar_districts" attrs="{'invisible':[('region', '!=', 'dar')]}"/>
+                            <field name="dodoma_districts" attrs="{'invisible':[('region', '!=', 'dodoma')]}"/>
+                            <field name="geita_districts" attrs="{'invisible':[('region', '!=', 'geita')]}"/>
+                            <field name="iringa_districts" attrs="{'invisible':[('region', '!=', 'iringa')]}"/>
+                            <field name="kagera_districts" attrs="{'invisible':[('region', '!=', 'kagera')]}"/>
+                            <field name="katavi_districts" attrs="{'invisible':[('region', '!=', 'katavi')]}"/>
+                            <field name="kigoma_districts" attrs="{'invisible':[('region', '!=', 'kigoma')]}"/>
+                            <field name="kilimanjaro_districts"
+                                   attrs="{'invisible':[('region', '!=', 'kilimanjaro')]}"/>
+                            <field name="lindi_districts" attrs="{'invisible':[('region', '!=', 'lindi')]}"/>
+                            <field name="manyara_districts" attrs="{'invisible':[('region', '!=', 'manyara')]}"/>
+                            <field name="mara_districts" attrs="{'invisible':[('region', '!=', 'mara')]}"/>
+                            <field name="mbeya_districts" attrs="{'invisible':[('region', '!=', 'mbeya')]}"/>
+                            <field name="morogoro_districts" attrs="{'invisible':[('region', '!=', 'morogoro')]}"/>
+                            <field name="mtwara_districts" attrs="{'invisible':[('region', '!=', 'mtwara')]}"/>
+                            <field name="mwanza_districts" attrs="{'invisible':[('region', '!=', 'mwanza')]}"/>
+                            <field name="njombe_districts" attrs="{'invisible':[('region', '!=', 'njombe')]}"/>
+                            <field name="pwani_districts" attrs="{'invisible':[('region', '!=', 'pwani')]}"/>
+                            <field name="rukwa_districts" attrs="{'invisible':[('region', '!=', 'rukwa')]}"/>
+                            <field name="ruvuma_districts" attrs="{'invisible':[('region', '!=', 'ruvuma')]}"/>
+                            <field name="shinyanga_districts" attrs="{'invisible':[('region', '!=', 'shinyanga')]}"/>
+                            <field name="simiyu_districts" attrs="{'invisible':[('region', '!=', 'simiyu')]}"/>
+                            <field name="singida_districts" attrs="{'invisible':[('region', '!=', 'singida')]}"/>
+                            <field name="songwe_districts" attrs="{'invisible':[('region', '!=', 'songwe')]}"/>
+                            <field name="tabora_districts" attrs="{'invisible':[('region', '!=', 'tabora')]}"/>
+                            <field name="tanga_districts" attrs="{'invisible':[('region', '!=', 'tanga')]}"/>
+                            <field name="location_name"/>
+                        </group>
+                        <group>
+                            <field name="issue_summary"/>
+                            <field name="conclusion"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
 
-<!--&lt;!&ndash;    issues action view &ndash;&gt;-->
-<!--    <record id="issues_action_view" model="ir.actions.act_window">-->
-<!--        <field name="name">Issues</field>-->
-<!--        <field name="type">ir.actions.act_window</field>-->
-<!--        <field name="res_model">issue</field>-->
-<!--        <field name="view_mode">tree,form</field>-->
-<!--        <field name="help" type="html">-->
-<!--          <p class="o_view_nocontent_smiling_face">-->
-<!--            &lt;!&ndash; Add Text Here &ndash;&gt;-->
-<!--          </p><p>-->
-<!--            &lt;!&ndash; More details about what a user can do with this object will be OK &ndash;&gt;-->
-<!--            Create New Issue-->
-<!--          </p>-->
-<!--        </field>-->
-<!--    </record>-->
+<!--    issues action view -->
+    <record id="issues_action_view" model="ir.actions.act_window">
+        <field name="name">Issues</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">issue</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+          <p class="o_view_nocontent_smiling_face">
+            <!-- Add Text Here -->
+          </p><p>
+            <!-- More details about what a user can do with this object will be OK -->
+            Create New Issue
+          </p>
+        </field>
+    </record>
 
 
 
@@ -821,7 +821,7 @@
     <!-- This Menu Item must have a parent and an action -->
     <menuitem id="engagement_id" name="Engagement" parent="membership_root" action="engagement_action_view" sequence="3"/>
     <!-- This Menu Item must have a parent and an action -->
-<!--    <menuitem id="issues_id" name="Issues" parent="membership_root" action="issues_action_view" sequence="4"/>-->
+    <menuitem id="issues_id" name="Issues" parent="membership_root" action="issues_action_view" sequence="4"/>
     <!-- This Menu Item must have a parent and an action -->
     <menuitem id="configuration_id" name="Configuration" parent="membership_root" sequence="5"/>
     <!-- This Menu Item must have a parent and an action -->
@@ -837,8 +837,7 @@
     <menuitem id="engagement_type_menu_action" name="Engagement Types" parent="configuration_id" action="engagement_type_action_view_id"
               sequence="4"/>
     <!-- This Menu Item must have a parent and an action -->
-<!--    <menuitem id="issues_type_menu_action" name="Issues Types" parent="configuration_id" action="issues_type_action_view_id"-->
-<!--              sequence="5"/>-->
+    <menuitem id="issues_type_menu_action" name="Issues Types" parent="configuration_id" action="issues_type_action_view_id" sequence="5"/>
     <!-- This Menu Item must have a parent and an action -->
     <menuitem id="contact_title_id" name="Contact Title" parent="configuration_id" action="contact_title_action_view"
               sequence="6"/>
