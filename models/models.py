@@ -74,7 +74,7 @@ class FormRegistration(models.Model):
     sector_industry = fields.Many2one(comodel_name="configuration.setting.industry", string="Sector/ Industry",
                                       required=False, )
     cluster_id = fields.Many2one(comodel_name="configuration.setting.cluster", string="Cluster", required=False, )
-    membership_cat = fields.Many2one(comodel_name="configuration.setting.category", string="Membership Category",
+    membership_cat = fields.Many2one(comodel_name="configuration.setting.category", string="Category",
                                      required=False, )
     applicable_fee = fields.Float(string="Registration Fees", related="membership_cat.registration_fee",
                                   required=False, )
@@ -257,6 +257,7 @@ class BusinessDescription(models.Model):
 class GeneralContact(models.Model):
     _name = "general.contact"
     _description = "table to store general contact of hte company"
+    _rec_name = "email"
 
     name = fields.Char(string="Contact Name", required=True)
     title = fields.Many2one(comodel_name="contact.title", string="Title", required=False, )
@@ -274,11 +275,13 @@ class Payment(models.Model):
     _description = "Record payment table"
 
     name = fields.Many2one(comodel_name="form.registration", string="Company Name", required=True, )
-    reg_fee = fields.Float(string="registration fee", related="name.applicable_fee", required=False, group_operator=True)
+    reg_fee = fields.Float(string="registration fee", related="name.applicable_fee", required=False,
+                           group_operator=True)
     annual_fee = fields.Float(string="annual fee", related="name.annual_fee", required=False, group_operator=True)
     fee_amount = fields.Float(string="Amount", required=True, compute="amount_required", group_operator=True)
     amount_paid = fields.Float(string="Amount Paid", required=False, compute="amount_paid_compute", group_operator=True)
-    amount_remain = fields.Float(string="Amount Remain", required=False, compute="compute_amount_remain_unpaid", group_operator=True)
+    amount_remain = fields.Float(string="Amount Remain", required=False, compute="compute_amount_remain_unpaid",
+                                 group_operator=True)
     category = fields.Char(string="Category", related="name.membership_cat.name", required=False, )
     cluster = fields.Char(string="Cluster", related="name.cluster_id.name", required=False, )
     pay_year = fields.Selection(string="For Year", selection=[('2017', '2017'), ('2018', '2018'), ('2019', '2019'),
@@ -411,9 +414,317 @@ class ContactTitle(models.Model):
     name = fields.Char(string="Title", required=True, )
     abbreviation = fields.Char(string="Abbreviation", required=False, )
 
-# class ConfigurationSettingCluster(models.Model):
-#     _name = "configuration.setting.cluster"
-#     _description = "configuration setting table cluster "
-#     _rec_name = "name"
 
-# name = fields.Char(string="Cluster name", required=False, )
+class Engagement(models.Model):
+    _name = "engagement"
+    _description = "Engagement recording Table"
+
+    member_field = fields.Many2one(comodel_name="form.registration", string="Member", required=False, )
+    engagement_type = fields.Many2one(comodel_name="engagement.type", string="Engagement Type", required=False, )
+    description = fields.Text(string="Description", required=False, )
+    date = fields.Date(string="Date", required=False, )
+    region = fields.Selection(string="Region",
+                              selection=[('arusha', 'Arusha'), ('dar', 'Dar es Salaam'), ('dodoma', 'Dodoma'),
+                                         ('geita', 'Geita'),
+                                         ('iringa', 'Iringa'), ('kagera', 'Kagera'), ('katavi', 'Katavi'),
+                                         ('kigoma', 'Kigoma'),
+                                         ('kilimanjaro', 'Kilimanjaro'),
+                                         ('lindi', 'Lindi'), ('manyara', 'Manyara'), ('mara', 'Mara'),
+                                         ('mbeya', 'Mbeya'), ('morogoro', 'Morogoro'),
+                                         ('mtwara', 'Mtwara'), ('mwanza', 'Mwanza'), ('njombe', 'Njombe'),
+                                         ('pwani', 'Pwani'),
+                                         ('rukwa ', 'Rukwa '), ('ruvuma', 'Ruvuma'),
+                                         ('shinyanga', 'Shinyanga'), ('simiyu', 'Simiyu'), ('singida', 'Singida'),
+                                         ('songwe', 'Songwe'), ('tabora', 'Tabora'),
+                                         ('tanga', 'Tanga')], required=False, )
+    arusha_districts = fields.Selection(string="District",
+                                        selection=[('meru', 'Meru'), ('arusha_city', 'Arusha City'), ('ar', 'Arusha'),
+                                                   ('karatu', 'Karatu'), ('longido', 'Longido'), ('monduli', 'Monduli'),
+                                                   ('ngorongoro', 'Ngorongoro'), ], required=False, )
+    dar_districts = fields.Selection(string="District",
+                                     selection=[('ilala', 'Ilala'), ('kinondoni', 'Kinondoni'), ('temeke', 'Temeke'),
+                                                ('kigamboni', 'Kigamboni'), ('ubungo', 'Ubungo'), ], required=False, )
+    dodoma_districts = fields.Selection(string="District",
+                                        selection=[('bahi', 'Bahi'), ('chamwino', 'Chamwino'), ('chemba', 'Chemba'),
+                                                   ('dodoma_municipal', 'Dodoma Municipal'), ('kondoa', 'Kondoa'),
+                                                   ('kongwa', 'Kongwa'), ('mpwapwa', 'Mpwapwa'), ], required=False, )
+    geita_districts = fields.Selection(string="District", selection=[('bukombe', 'Bukombe'), ('chato', 'Chato'),
+                                                                     ('geita_town', 'Geita Town Council & Geita'),
+                                                                     ('mbogwe', 'Mbogwe'), ("nyang", "Nyang'hwale"), ],
+                                       required=False, )
+    iringa_districts = fields.Selection(string="District",
+                                        selection=[('iringa_disc', 'Iringa'), ('iringa_munic', 'Iringa Municipal'),
+                                                   ('kilolo', 'Kilolo'),
+                                                   ('mafinga', 'Mafinga'), ('mufindi', 'Mufindi'), ], required=False, )
+    kagera_districts = fields.Selection(string="District",
+                                        selection=[('biharamulo', 'Biharamulo'), ('bukoba', 'Bukoba'),
+                                                   ('bukoba_munic', 'Bukoba Municipal'),
+                                                   ('karagwe', 'Karagwe'), ('kyerwa', 'Kyerwa'),
+                                                   ('missenyi', 'Missenyi'), ('muleba', 'Muleba'),
+                                                   ('ngara', 'Ngara'), ], required=False, )
+    katavi_districts = fields.Selection(string="District", selection=[('mlele', 'Mlele'), ('mpanda', 'Mpanda'),
+                                                                      ('mpanda_town', 'Mpanda Town'), ],
+                                        required=False, )
+    kigoma_districts = fields.Selection(string="District",
+                                        selection=[('buhigwe', 'Buhigwe'), ('kakonko', 'Kakonko'), ('kasulu', 'Kasulu'),
+                                                   ('kasulu_town', 'Kasulu Town'),
+                                                   ('kibondo', 'Kibondo'), ('kigoma', 'Kigoma'),
+                                                   ('kigoma_munic', 'Kigoma-Ujiji Municipal'), ('uvinza', 'Uvinza'), ],
+                                        required=False, )
+    kilimanjaro_districts = fields.Selection(string="District", selection=[('hai', 'Hai'), ('moshi', 'Moshi'),
+                                                                           ('moshi_monic', 'Moshi Municipal'),
+                                                                           ('mwanga', 'Mwanga'),
+                                                                           ('rombo', 'Rombo'), ('same', 'Same'),
+                                                                           ('siha', 'Siha'), ], required=False, )
+    lindi_districts = fields.Selection(string="District", selection=[('kilwa', 'Kilwa'), ('lindi', 'Lindi'),
+                                                                     ('lindi_munic', 'Lindi Municipal'),
+                                                                     ('liwale', 'Liwale'),
+                                                                     ('nachingwea', 'Nachingwea'),
+                                                                     ('ruangwa', 'Ruangwa'), ], required=False, )
+    manyara_districts = fields.Selection(string="District",
+                                         selection=[('babati_town', 'Babati Town'), ('babati', 'Babati'),
+                                                    ('hanang', 'Hanang'), ('kiteto', 'Kiteto'),
+                                                    ('mbulu', 'Mbulu'), ('simanjiro', 'Simanjiro'), ], required=False, )
+    mara_districts = fields.Selection(string="District",
+                                      selection=[('bunda', 'Bunda'), ('butiama', 'Butiama'), ('musoma', 'Musoma'),
+                                                 ('musoma_munic', 'Musoma Municipal'),
+                                                 ('rorya', 'Rorya'), ('serengeti', 'Serengeti'),
+                                                 ('tarime', 'Tarime'), ], required=False, )
+    mbeya_districts = fields.Selection(string="District",
+                                       selection=[('busokelo', 'Busokelo'), ('chunya', 'Chunya'), ('kyela', 'Kyela'),
+                                                  ('mbarali', 'Mbarali'), ('mbeya_city', 'Mbeya City'),
+                                                  ('mbeya', 'Mbeya'), ('rungwe', 'Rungwe'), ], required=False, )
+    morogoro_districts = fields.Selection(string="District", selection=[('gairo', 'Gairo'), ('kilombero', 'Kilombero'),
+                                                                        ('kilosa', 'Kilosa'), ('morogoro', 'Morogoro'),
+                                                                        ('morogoro_municipal ', 'Morogoro Municipal '),
+                                                                        ('mvomero', 'Mvomero'), ('ulanga', 'Ulanga'),
+                                                                        ('malinyi', 'Malinyi'),
+                                                                        ('ifakara', 'Ifakara'), ], required=False, )
+    mtwara_districts = fields.Selection(string="District",
+                                        selection=[('masasi', 'Masasi'), ('masasi_town', 'Masasi Town'),
+                                                   ('mtwara', 'Mtwara'), ('mtwara_municipal', 'Mtwara Municipal'),
+                                                   ('nanyumbu', 'Nanyumbu'), ('newala', 'Newala'),
+                                                   ('tandahimba', 'Tandahimba'), ], required=False, )
+    mwanza_districts = fields.Selection(string="District",
+                                        selection=[('ilemela_municipal', 'Ilemela Municipal'), ('kwimba', 'Kwimba'),
+                                                   ('magu', 'Magu'), ('misungwi', 'Misungwi'),
+                                                   ('nyamagana_municipal', 'Nyamagana Municipal'),
+                                                   ('sengerema', 'Sengerema'), ('ukerewe', 'Ukerewe'), ],
+                                        required=False, )
+    njombe_districts = fields.Selection(string="District",
+                                        selection=[('ludewa', 'Ludewa'), ('makambako_town', 'Makambako Town'),
+                                                   ('makete', 'Makete'), ('njombe', 'Njombe'),
+                                                   ('njombe_town', 'Njombe Town'), ('wang', "Wanging'ombe"), ],
+                                        required=False, )
+    pwani_districts = fields.Selection(string="District", selection=[('bagamoyo', 'Bagamoyo'), ('kibaha', 'Kibaha'),
+                                                                     ('kibaha_town', 'Kibaha Town'),
+                                                                     ('kisarawe', 'Kisarawe'),
+                                                                     ('mafia', 'Mafia'), ('mkuranga', 'Mkuranga'),
+                                                                     ('rufiji ', 'Rufiji '), ], required=False, )
+    rukwa_districts = fields.Selection(string="District", selection=[('kalambo', 'Kalambo'), ('nkasi', 'Nkasi'),
+                                                                     ('sumbawanga', 'Sumbawanga'), (
+                                                                         'sumbawanga_municipal',
+                                                                         'Sumbawanga Municipal'), ],
+                                       required=False, )
+    ruvuma_districts = fields.Selection(string="District", selection=[('mbinga', 'Mbinga'), ('songea', 'Songea'),
+                                                                      ('songea_Municipal', 'Songea Municipal'),
+                                                                      ('tunduru', 'Tunduru'),
+                                                                      ('namtumbo ', 'Namtumbo '),
+                                                                      ('nyasa ', 'Nyasa '), ], required=False, )
+    shinyanga_districts = fields.Selection(string="District",
+                                           selection=[('kahama_town', 'Kahama Town'), ('kahama', 'Kahama'),
+                                                      ('kishapu', 'Kishapu'),
+                                                      ('shinyanga_municipal', 'Shinyanga Municipal'),
+                                                      ('shinyanga', 'Shinyanga'), ], required=False, )
+    simiyu_districts = fields.Selection(string="District", selection=[('bariadi ', 'Bariadi '), ('busega ', 'Busega '),
+                                                                      ('itilima', 'Itilima'), ('maswa', 'Maswa'),
+                                                                      ('meatu', 'Meatu'), ], required=False, )
+    singida_districts = fields.Selection(string="District",
+                                         selection=[('ikungi', 'Ikungi'), ('iramba', 'Iramba'), ('manyoni', 'Manyoni'),
+                                                    ('mkalama', 'Mkalama'), ('singida', 'Singida'),
+                                                    ('singida_municipal', 'Singida Municipal'), ], required=False, )
+    songwe_districts = fields.Selection(string="District",
+                                        selection=[('ileje', 'Ileje'), ('mbozi', 'Mbozi'), ('momba', 'Momba'),
+                                                   ('songwe', 'Songwe'), ], required=False, )
+    tabora_districts = fields.Selection(string="District",
+                                        selection=[('iogunga', 'Igunga'), ('kaliua', 'Kaliua'), ('nzega', 'Nzega'),
+                                                   ('sikonge', 'Sikonge'),
+                                                   ('tabora_municipal', 'Tabora Municipal'), ('urambo ', 'Urambo '),
+                                                   ('uyui ', 'Uyui '), ], required=False, )
+    tanga_districts = fields.Selection(string="District",
+                                       selection=[('handeni', 'Handeni'), ('handeni_town', 'Handeni Town'),
+                                                  ('kilindi', 'Kilindi'), ('korogwe_town', 'Korogwe Town'),
+                                                  ('korogwe', 'Korogwe'), ('lushoto', 'Lushoto'), ('muheza', 'Muheza'),
+                                                  ('kkinga', 'Mkinga'), ('pangani ', 'Pangani '),
+                                                  ('tanga_city', 'Tanga City'), ], required=False, )
+    location_name = fields.Char(string="Location Name", required=False, )
+    state_select = fields.Selection(string="Status",
+                                    selection=[('initiated', 'Initiated'), ('ongoing', 'Ongoing'),
+                                               ('completed', 'Completed'), ], required=False, )
+    outcome = fields.Char(string="Outcome", required=False, )
+    attachment_copy = fields.Binary(string="Attachment", attachment=True,
+                                    store=True, )
+    attachment_copy_file_name = fields.Char('Attachment File Name')
+
+
+class Issue(models.Model):
+    _name = "issue"
+    _description = "Issue table"
+
+    name = fields.Char(string="Issue Type", required=False, )
+    member_other = fields.Many2one(comodel_name="form.registration", string="Member", required=False, )
+    date = fields.Date(string="Date", required=False, )
+    region = fields.Selection(string="Region",
+                              selection=[('arusha', 'Arusha'), ('dar', 'Dar es Salaam'), ('dodoma', 'Dodoma'),
+                                         ('geita', 'Geita'),
+                                         ('iringa', 'Iringa'), ('kagera', 'Kagera'), ('katavi', 'Katavi'),
+                                         ('kigoma', 'Kigoma'),
+                                         ('kilimanjaro', 'Kilimanjaro'),
+                                         ('lindi', 'Lindi'), ('manyara', 'Manyara'), ('mara', 'Mara'),
+                                         ('mbeya', 'Mbeya'), ('morogoro', 'Morogoro'),
+                                         ('mtwara', 'Mtwara'), ('mwanza', 'Mwanza'), ('njombe', 'Njombe'),
+                                         ('pwani', 'Pwani'),
+                                         ('rukwa ', 'Rukwa '), ('ruvuma', 'Ruvuma'),
+                                         ('shinyanga', 'Shinyanga'), ('simiyu', 'Simiyu'), ('singida', 'Singida'),
+                                         ('songwe', 'Songwe'), ('tabora', 'Tabora'),
+                                         ('tanga', 'Tanga')], required=False, )
+    arusha_districts = fields.Selection(string="District",
+                                        selection=[('meru', 'Meru'), ('arusha_city', 'Arusha City'), ('ar', 'Arusha'),
+                                                   ('karatu', 'Karatu'), ('longido', 'Longido'), ('monduli', 'Monduli'),
+                                                   ('ngorongoro', 'Ngorongoro'), ], required=False, )
+    dar_districts = fields.Selection(string="District",
+                                     selection=[('ilala', 'Ilala'), ('kinondoni', 'Kinondoni'), ('temeke', 'Temeke'),
+                                                ('kigamboni', 'Kigamboni'), ('ubungo', 'Ubungo'), ], required=False, )
+    dodoma_districts = fields.Selection(string="District",
+                                        selection=[('bahi', 'Bahi'), ('chamwino', 'Chamwino'), ('chemba', 'Chemba'),
+                                                   ('dodoma_municipal', 'Dodoma Municipal'), ('kondoa', 'Kondoa'),
+                                                   ('kongwa', 'Kongwa'), ('mpwapwa', 'Mpwapwa'), ], required=False, )
+    geita_districts = fields.Selection(string="District", selection=[('bukombe', 'Bukombe'), ('chato', 'Chato'),
+                                                                     ('geita_town', 'Geita Town Council & Geita'),
+                                                                     ('mbogwe', 'Mbogwe'), ("nyang", "Nyang'hwale"), ],
+                                       required=False, )
+    iringa_districts = fields.Selection(string="District",
+                                        selection=[('iringa_disc', 'Iringa'), ('iringa_munic', 'Iringa Municipal'),
+                                                   ('kilolo', 'Kilolo'),
+                                                   ('mafinga', 'Mafinga'), ('mufindi', 'Mufindi'), ], required=False, )
+    kagera_districts = fields.Selection(string="District",
+                                        selection=[('biharamulo', 'Biharamulo'), ('bukoba', 'Bukoba'),
+                                                   ('bukoba_munic', 'Bukoba Municipal'),
+                                                   ('karagwe', 'Karagwe'), ('kyerwa', 'Kyerwa'),
+                                                   ('missenyi', 'Missenyi'), ('muleba', 'Muleba'),
+                                                   ('ngara', 'Ngara'), ], required=False, )
+    katavi_districts = fields.Selection(string="District", selection=[('mlele', 'Mlele'), ('mpanda', 'Mpanda'),
+                                                                      ('mpanda_town', 'Mpanda Town'), ],
+                                        required=False, )
+    kigoma_districts = fields.Selection(string="District",
+                                        selection=[('buhigwe', 'Buhigwe'), ('kakonko', 'Kakonko'), ('kasulu', 'Kasulu'),
+                                                   ('kasulu_town', 'Kasulu Town'),
+                                                   ('kibondo', 'Kibondo'), ('kigoma', 'Kigoma'),
+                                                   ('kigoma_munic', 'Kigoma-Ujiji Municipal'), ('uvinza', 'Uvinza'), ],
+                                        required=False, )
+    kilimanjaro_districts = fields.Selection(string="District", selection=[('hai', 'Hai'), ('moshi', 'Moshi'),
+                                                                           ('moshi_monic', 'Moshi Municipal'),
+                                                                           ('mwanga', 'Mwanga'),
+                                                                           ('rombo', 'Rombo'), ('same', 'Same'),
+                                                                           ('siha', 'Siha'), ], required=False, )
+    lindi_districts = fields.Selection(string="District", selection=[('kilwa', 'Kilwa'), ('lindi', 'Lindi'),
+                                                                     ('lindi_munic', 'Lindi Municipal'),
+                                                                     ('liwale', 'Liwale'),
+                                                                     ('nachingwea', 'Nachingwea'),
+                                                                     ('ruangwa', 'Ruangwa'), ], required=False, )
+    manyara_districts = fields.Selection(string="District",
+                                         selection=[('babati_town', 'Babati Town'), ('babati', 'Babati'),
+                                                    ('hanang', 'Hanang'), ('kiteto', 'Kiteto'),
+                                                    ('mbulu', 'Mbulu'), ('simanjiro', 'Simanjiro'), ], required=False, )
+    mara_districts = fields.Selection(string="District",
+                                      selection=[('bunda', 'Bunda'), ('butiama', 'Butiama'), ('musoma', 'Musoma'),
+                                                 ('musoma_munic', 'Musoma Municipal'),
+                                                 ('rorya', 'Rorya'), ('serengeti', 'Serengeti'),
+                                                 ('tarime', 'Tarime'), ], required=False, )
+    mbeya_districts = fields.Selection(string="District",
+                                       selection=[('busokelo', 'Busokelo'), ('chunya', 'Chunya'), ('kyela', 'Kyela'),
+                                                  ('mbarali', 'Mbarali'), ('mbeya_city', 'Mbeya City'),
+                                                  ('mbeya', 'Mbeya'), ('rungwe', 'Rungwe'), ], required=False, )
+    morogoro_districts = fields.Selection(string="District", selection=[('gairo', 'Gairo'), ('kilombero', 'Kilombero'),
+                                                                        ('kilosa', 'Kilosa'), ('morogoro', 'Morogoro'),
+                                                                        ('morogoro_municipal ', 'Morogoro Municipal '),
+                                                                        ('mvomero', 'Mvomero'), ('ulanga', 'Ulanga'),
+                                                                        ('malinyi', 'Malinyi'),
+                                                                        ('ifakara', 'Ifakara'), ], required=False, )
+    mtwara_districts = fields.Selection(string="District",
+                                        selection=[('masasi', 'Masasi'), ('masasi_town', 'Masasi Town'),
+                                                   ('mtwara', 'Mtwara'), ('mtwara_municipal', 'Mtwara Municipal'),
+                                                   ('nanyumbu', 'Nanyumbu'), ('newala', 'Newala'),
+                                                   ('tandahimba', 'Tandahimba'), ], required=False, )
+    mwanza_districts = fields.Selection(string="District",
+                                        selection=[('ilemela_municipal', 'Ilemela Municipal'), ('kwimba', 'Kwimba'),
+                                                   ('magu', 'Magu'), ('misungwi', 'Misungwi'),
+                                                   ('nyamagana_municipal', 'Nyamagana Municipal'),
+                                                   ('sengerema', 'Sengerema'), ('ukerewe', 'Ukerewe'), ],
+                                        required=False, )
+    njombe_districts = fields.Selection(string="District",
+                                        selection=[('ludewa', 'Ludewa'), ('makambako_town', 'Makambako Town'),
+                                                   ('makete', 'Makete'), ('njombe', 'Njombe'),
+                                                   ('njombe_town', 'Njombe Town'), ('wang', "Wanging'ombe"), ],
+                                        required=False, )
+    pwani_districts = fields.Selection(string="District", selection=[('bagamoyo', 'Bagamoyo'), ('kibaha', 'Kibaha'),
+                                                                     ('kibaha_town', 'Kibaha Town'),
+                                                                     ('kisarawe', 'Kisarawe'),
+                                                                     ('mafia', 'Mafia'), ('mkuranga', 'Mkuranga'),
+                                                                     ('rufiji ', 'Rufiji '), ], required=False, )
+    rukwa_districts = fields.Selection(string="District", selection=[('kalambo', 'Kalambo'), ('nkasi', 'Nkasi'),
+                                                                     ('sumbawanga', 'Sumbawanga'), (
+                                                                         'sumbawanga_municipal',
+                                                                         'Sumbawanga Municipal'), ],
+                                       required=False, )
+    ruvuma_districts = fields.Selection(string="District", selection=[('mbinga', 'Mbinga'), ('songea', 'Songea'),
+                                                                      ('songea_Municipal', 'Songea Municipal'),
+                                                                      ('tunduru', 'Tunduru'),
+                                                                      ('namtumbo ', 'Namtumbo '),
+                                                                      ('nyasa ', 'Nyasa '), ], required=False, )
+    shinyanga_districts = fields.Selection(string="District",
+                                           selection=[('kahama_town', 'Kahama Town'), ('kahama', 'Kahama'),
+                                                      ('kishapu', 'Kishapu'),
+                                                      ('shinyanga_municipal', 'Shinyanga Municipal'),
+                                                      ('shinyanga', 'Shinyanga'), ], required=False, )
+    simiyu_districts = fields.Selection(string="District", selection=[('bariadi ', 'Bariadi '), ('busega ', 'Busega '),
+                                                                      ('itilima', 'Itilima'), ('maswa', 'Maswa'),
+                                                                      ('meatu', 'Meatu'), ], required=False, )
+    singida_districts = fields.Selection(string="District",
+                                         selection=[('ikungi', 'Ikungi'), ('iramba', 'Iramba'), ('manyoni', 'Manyoni'),
+                                                    ('mkalama', 'Mkalama'), ('singida', 'Singida'),
+                                                    ('singida_municipal', 'Singida Municipal'), ], required=False, )
+    songwe_districts = fields.Selection(string="District",
+                                        selection=[('ileje', 'Ileje'), ('mbozi', 'Mbozi'), ('momba', 'Momba'),
+                                                   ('songwe', 'Songwe'), ], required=False, )
+    tabora_districts = fields.Selection(string="District",
+                                        selection=[('iogunga', 'Igunga'), ('kaliua', 'Kaliua'), ('nzega', 'Nzega'),
+                                                   ('sikonge', 'Sikonge'),
+                                                   ('tabora_municipal', 'Tabora Municipal'), ('urambo ', 'Urambo '),
+                                                   ('uyui ', 'Uyui '), ], required=False, )
+    tanga_districts = fields.Selection(string="District",
+                                       selection=[('handeni', 'Handeni'), ('handeni_town', 'Handeni Town'),
+                                                  ('kilindi', 'Kilindi'), ('korogwe_town', 'Korogwe Town'),
+                                                  ('korogwe', 'Korogwe'), ('lushoto', 'Lushoto'), ('muheza', 'Muheza'),
+                                                  ('kkinga', 'Mkinga'), ('pangani ', 'Pangani '),
+                                                  ('tanga_city', 'Tanga City'), ], required=False, )
+    location_name = fields.Char(string="Location Name", required=False, )
+    issue_type_id = fields.Many2one(comodel_name="issue.type", string="Issue Type", required=False, )
+    received_by = fields.Char(string="Received by", required=False, )
+    issue_summary = fields.Text(string="Issue Summary", required=False, )
+    conclusion = fields.Text(string="Conclusion", required=False, )
+
+
+class EngagementType(models.Model):
+    _name = "engagement.type"
+    _description = "Engagement Type table"
+    _rec_name = "name"
+
+    name = fields.Char(string="Engagement Type", required=True, )
+
+
+class IssueType(models.Model):
+    _name = "issue.type"
+    _description = "Issue Type table"
+
+    name = fields.Char(string="Issue Type", required=True, )

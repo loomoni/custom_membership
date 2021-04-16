@@ -20,3 +20,7 @@ access_contact_title,Add contact Title,model_contact_title,,1,1,1,1
 
 access_payment_lines,Add Payment,model_payment_lines,,1,1,1,1
 
+access_engagement,Add engagement,model_engagement,,1,1,1,1
+
+access_engagement_type,engagement type,model_engagement_type,,1,1,1,1
+

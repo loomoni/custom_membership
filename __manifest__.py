@@ -14,6 +14,7 @@
         'views/contact_inherit.xml',
         'views/email_inherity.xml',
         'views/invoice_inherity_view.xml',
+        'views/website_form.xml',
     ],
     'qweb': [
     ],

@@ -14,6 +14,7 @@ class EmailInherity(models.Model):
 
     name = fields.Many2one(comodel_name="configuration.setting.category", string="Category", required=False, )
     company_name = fields.Many2one(comodel_name="form.registration", string="Company", required=False, )
-    contact_name = fields.Many2one(comodel_name="general.contact", string="Member Name", required=False, )
-    email = fields.Char(string="Email", related="contact_name.email", required=False)
+    contact_name = fields.Many2one(comodel_name="general.contact", string="Email", required=False, )
+    # email = fields.Char(string="Email", related="contact_name.email", required=False)
+    # email = fields.Many2one(comodel_name="general.contact", string="Email", required=False)
 
