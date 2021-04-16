@@ -820,6 +820,7 @@
                             <field name="tabora_districts" attrs="{'invisible':[('region', '!=', 'tabora')]}"/>
                             <field name="tanga_districts" attrs="{'invisible':[('region', '!=', 'tanga')]}"/>
                             <field name="location_name"/>
+                            <field name="status"/>
                         </group>
                         <group>
                             <field name="issue_summary"/>
@@ -998,6 +999,52 @@
         </field>
     </record>
 
+<!--    status tree view -->
+    <record id="status_tree_view" model="ir.ui.view">
+        <field name="name">status.tree.view</field>
+        <field name="model">status</field>
+        <field name="arch" type="xml">
+            <tree string="Status">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+<!--    status form view -->
+    <record id="status_form_view" model="ir.ui.view">
+        <field name="name">status.form.view</field>
+        <field name="model">status</field>
+        <field name="arch" type="xml">
+            <form string="Status">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+<!--    status action view -->
+    <record id="status_action_view" model="ir.actions.act_window">
+        <field name="name">Status</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">status</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+          <p class="o_view_nocontent_smiling_face">
+            <!-- Add Text Here -->
+          </p><p>
+            <!-- More details about what a user can do with this object will be OK -->
+            No status created yet, Let create one
+          </p>
+        </field>
+    </record>
 
     <!-- This Menu Item will appear in the Upper bar, That's why It needs NO parent or action -->
     <menuitem id="membership_root" name="Membership" sequence="1"/>
@@ -1035,7 +1082,10 @@
     <menuitem id="event_theme_menu_action" name="Event Themes" parent="configuration_id"
               action="event_theme_action_view" sequence="6"/>
     <!-- This Menu Item must have a parent and an action -->
+    <menuitem id="status_menu_action" name="Status" parent="configuration_id"
+              action="status_action_view" sequence="7"/>
+    <!-- This Menu Item must have a parent and an action -->
     <menuitem id="contact_title_id" name="Contact Title" parent="configuration_id" action="contact_title_action_view"
-              sequence="7"/>
+              sequence="8"/>
 
 </odoo>

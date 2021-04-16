@@ -567,9 +567,10 @@ class Engagement(models.Model):
                                                   ('kkinga', 'Mkinga'), ('pangani ', 'Pangani '),
                                                   ('tanga_city', 'Tanga City'), ], required=False, )
     location_name = fields.Char(string="Location Name", required=False, )
-    state_select = fields.Selection(string="Status",
-                                    selection=[('initiated', 'Initiated'), ('ongoing', 'Ongoing'),
-                                               ('completed', 'Completed'), ], required=False, )
+    state_select = fields.Many2one(comodel_name="status", string="Status", required=False, )
+    # Selection(string="Status",
+    #                             selection=[('initiated', 'Initiated'), ('ongoing', 'Ongoing'),
+    #                                        ('completed', 'Completed'), ], required=False, )
     outcome = fields.Char(string="Outcome", required=False, )
     attachment_copy = fields.Binary(string="Attachment", attachment=True,
                                     store=True, )
@@ -581,9 +582,10 @@ class Issue(models.Model):
     _inherit = ['mail.thread', 'mail.activity.mixin']
     _description = "Issue table"
 
-    name = fields.Char(string="Issue Name", required=False, )
+    name = fields.Char(string="Issue Name", required=True, )
     member_other = fields.Many2one(comodel_name="form.registration", string="Member", required=False, )
     date = fields.Date(string="Date", required=False, )
+    status = fields.Many2one(comodel_name="status", string="Status", required=False, )
     region = fields.Selection(string="Region",
                               selection=[('arusha', 'Arusha'), ('dar', 'Dar es Salaam'), ('dodoma', 'Dodoma'),
                                          ('geita', 'Geita'),
@@ -902,3 +904,11 @@ class EventTheme(models.Model):
     _description = "Event Theme Table"
 
     name = fields.Char(string="Event Theme", required=True, )
+
+
+class Status(models.Model):
+    _name = "status"
+    _inherit = ['mail.thread', 'mail.activity.mixin']
+    _description = "Status Table"
+
+    name = fields.Char(string="Status", required=True, )
