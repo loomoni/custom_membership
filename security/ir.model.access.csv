@@ -28,3 +28,7 @@ access_issue,Add issues,model_issue,,1,1,1,1
 
 access_issue_type,Add issue type,model_issue_type,,1,1,1,1
 
+access_event_theme,Add event theme,model_event_theme,,1,1,1,1
+
+access_event,Add event,model_event,,1,1,1,1
+
