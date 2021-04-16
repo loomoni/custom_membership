@@ -62,34 +62,8 @@
                         <group string="Address">
                             <field name="street" placeholder="street"/>
                             <field name="street_two" placeholder="street 2"/>
-                            <field name="region"/>
-                            <field name="arusha_districts" attrs="{'invisible':[('region', '!=', 'arusha')]}"/>
-                            <field name="dar_districts" attrs="{'invisible':[('region', '!=', 'dar')]}"/>
-                            <field name="dodoma_districts" attrs="{'invisible':[('region', '!=', 'dodoma')]}"/>
-                            <field name="geita_districts" attrs="{'invisible':[('region', '!=', 'geita')]}"/>
-                            <field name="iringa_districts" attrs="{'invisible':[('region', '!=', 'iringa')]}"/>
-                            <field name="kagera_districts" attrs="{'invisible':[('region', '!=', 'kagera')]}"/>
-                            <field name="katavi_districts" attrs="{'invisible':[('region', '!=', 'katavi')]}"/>
-                            <field name="kigoma_districts" attrs="{'invisible':[('region', '!=', 'kigoma')]}"/>
-                            <field name="kilimanjaro_districts"
-                                   attrs="{'invisible':[('region', '!=', 'kilimanjaro')]}"/>
-                            <field name="lindi_districts" attrs="{'invisible':[('region', '!=', 'lindi')]}"/>
-                            <field name="manyara_districts" attrs="{'invisible':[('region', '!=', 'manyara')]}"/>
-                            <field name="mara_districts" attrs="{'invisible':[('region', '!=', 'mara')]}"/>
-                            <field name="mbeya_districts" attrs="{'invisible':[('region', '!=', 'mbeya')]}"/>
-                            <field name="morogoro_districts" attrs="{'invisible':[('region', '!=', 'morogoro')]}"/>
-                            <field name="mtwara_districts" attrs="{'invisible':[('region', '!=', 'mtwara')]}"/>
-                            <field name="mwanza_districts" attrs="{'invisible':[('region', '!=', 'mwanza')]}"/>
-                            <field name="njombe_districts" attrs="{'invisible':[('region', '!=', 'njombe')]}"/>
-                            <field name="pwani_districts" attrs="{'invisible':[('region', '!=', 'pwani')]}"/>
-                            <field name="rukwa_districts" attrs="{'invisible':[('region', '!=', 'rukwa')]}"/>
-                            <field name="ruvuma_districts" attrs="{'invisible':[('region', '!=', 'ruvuma')]}"/>
-                            <field name="shinyanga_districts" attrs="{'invisible':[('region', '!=', 'shinyanga')]}"/>
-                            <field name="simiyu_districts" attrs="{'invisible':[('region', '!=', 'simiyu')]}"/>
-                            <field name="singida_districts" attrs="{'invisible':[('region', '!=', 'singida')]}"/>
-                            <field name="songwe_districts" attrs="{'invisible':[('region', '!=', 'songwe')]}"/>
-                            <field name="tabora_districts" attrs="{'invisible':[('region', '!=', 'tabora')]}"/>
-                            <field name="tanga_districts" attrs="{'invisible':[('region', '!=', 'tanga')]}"/>
+                            <field name="region_select"/>
+                            <field name="district_select"/>
                             <field name="ward" placeholder="Ward"/>
                             <field name="website" placeholder="www.kalen.co.tz"/>
                         </group>
@@ -624,7 +598,8 @@
             <tree string="Engagement">
                 <field name="member_field"/>
                 <field name="engagement_type"/>
-                <field name="region"/>
+                <field name="region_select"/>
+                <field name="district_select"/>
                 <field name="date"/>
                 <field name="state_select"/>
             </tree>
@@ -642,34 +617,8 @@
                         <group>
                             <field name="member_field"/>
                             <field name="engagement_type"/>
-                            <field name="region"/>
-                            <field name="arusha_districts" attrs="{'invisible':[('region', '!=', 'arusha')]}"/>
-                            <field name="dar_districts" attrs="{'invisible':[('region', '!=', 'dar')]}"/>
-                            <field name="dodoma_districts" attrs="{'invisible':[('region', '!=', 'dodoma')]}"/>
-                            <field name="geita_districts" attrs="{'invisible':[('region', '!=', 'geita')]}"/>
-                            <field name="iringa_districts" attrs="{'invisible':[('region', '!=', 'iringa')]}"/>
-                            <field name="kagera_districts" attrs="{'invisible':[('region', '!=', 'kagera')]}"/>
-                            <field name="katavi_districts" attrs="{'invisible':[('region', '!=', 'katavi')]}"/>
-                            <field name="kigoma_districts" attrs="{'invisible':[('region', '!=', 'kigoma')]}"/>
-                            <field name="kilimanjaro_districts"
-                                   attrs="{'invisible':[('region', '!=', 'kilimanjaro')]}"/>
-                            <field name="lindi_districts" attrs="{'invisible':[('region', '!=', 'lindi')]}"/>
-                            <field name="manyara_districts" attrs="{'invisible':[('region', '!=', 'manyara')]}"/>
-                            <field name="mara_districts" attrs="{'invisible':[('region', '!=', 'mara')]}"/>
-                            <field name="mbeya_districts" attrs="{'invisible':[('region', '!=', 'mbeya')]}"/>
-                            <field name="morogoro_districts" attrs="{'invisible':[('region', '!=', 'morogoro')]}"/>
-                            <field name="mtwara_districts" attrs="{'invisible':[('region', '!=', 'mtwara')]}"/>
-                            <field name="mwanza_districts" attrs="{'invisible':[('region', '!=', 'mwanza')]}"/>
-                            <field name="njombe_districts" attrs="{'invisible':[('region', '!=', 'njombe')]}"/>
-                            <field name="pwani_districts" attrs="{'invisible':[('region', '!=', 'pwani')]}"/>
-                            <field name="rukwa_districts" attrs="{'invisible':[('region', '!=', 'rukwa')]}"/>
-                            <field name="ruvuma_districts" attrs="{'invisible':[('region', '!=', 'ruvuma')]}"/>
-                            <field name="shinyanga_districts" attrs="{'invisible':[('region', '!=', 'shinyanga')]}"/>
-                            <field name="simiyu_districts" attrs="{'invisible':[('region', '!=', 'simiyu')]}"/>
-                            <field name="singida_districts" attrs="{'invisible':[('region', '!=', 'singida')]}"/>
-                            <field name="songwe_districts" attrs="{'invisible':[('region', '!=', 'songwe')]}"/>
-                            <field name="tabora_districts" attrs="{'invisible':[('region', '!=', 'tabora')]}"/>
-                            <field name="tanga_districts" attrs="{'invisible':[('region', '!=', 'tanga')]}"/>
+                            <field name="region_select"/>
+                            <field name="district_select"/>
                         </group>
                         <group>
                             <field name="date"/>
@@ -791,34 +740,8 @@
                             <field name="date"/>
                         </group>
                         <group>
-                            <field name="region"/>
-                            <field name="arusha_districts" attrs="{'invisible':[('region', '!=', 'arusha')]}"/>
-                            <field name="dar_districts" attrs="{'invisible':[('region', '!=', 'dar')]}"/>
-                            <field name="dodoma_districts" attrs="{'invisible':[('region', '!=', 'dodoma')]}"/>
-                            <field name="geita_districts" attrs="{'invisible':[('region', '!=', 'geita')]}"/>
-                            <field name="iringa_districts" attrs="{'invisible':[('region', '!=', 'iringa')]}"/>
-                            <field name="kagera_districts" attrs="{'invisible':[('region', '!=', 'kagera')]}"/>
-                            <field name="katavi_districts" attrs="{'invisible':[('region', '!=', 'katavi')]}"/>
-                            <field name="kigoma_districts" attrs="{'invisible':[('region', '!=', 'kigoma')]}"/>
-                            <field name="kilimanjaro_districts"
-                                   attrs="{'invisible':[('region', '!=', 'kilimanjaro')]}"/>
-                            <field name="lindi_districts" attrs="{'invisible':[('region', '!=', 'lindi')]}"/>
-                            <field name="manyara_districts" attrs="{'invisible':[('region', '!=', 'manyara')]}"/>
-                            <field name="mara_districts" attrs="{'invisible':[('region', '!=', 'mara')]}"/>
-                            <field name="mbeya_districts" attrs="{'invisible':[('region', '!=', 'mbeya')]}"/>
-                            <field name="morogoro_districts" attrs="{'invisible':[('region', '!=', 'morogoro')]}"/>
-                            <field name="mtwara_districts" attrs="{'invisible':[('region', '!=', 'mtwara')]}"/>
-                            <field name="mwanza_districts" attrs="{'invisible':[('region', '!=', 'mwanza')]}"/>
-                            <field name="njombe_districts" attrs="{'invisible':[('region', '!=', 'njombe')]}"/>
-                            <field name="pwani_districts" attrs="{'invisible':[('region', '!=', 'pwani')]}"/>
-                            <field name="rukwa_districts" attrs="{'invisible':[('region', '!=', 'rukwa')]}"/>
-                            <field name="ruvuma_districts" attrs="{'invisible':[('region', '!=', 'ruvuma')]}"/>
-                            <field name="shinyanga_districts" attrs="{'invisible':[('region', '!=', 'shinyanga')]}"/>
-                            <field name="simiyu_districts" attrs="{'invisible':[('region', '!=', 'simiyu')]}"/>
-                            <field name="singida_districts" attrs="{'invisible':[('region', '!=', 'singida')]}"/>
-                            <field name="songwe_districts" attrs="{'invisible':[('region', '!=', 'songwe')]}"/>
-                            <field name="tabora_districts" attrs="{'invisible':[('region', '!=', 'tabora')]}"/>
-                            <field name="tanga_districts" attrs="{'invisible':[('region', '!=', 'tanga')]}"/>
+                            <field name="region_select"/>
+                            <field name="district_select"/>
                             <field name="location_name"/>
                             <field name="status"/>
                         </group>
@@ -931,39 +854,15 @@
                             <field name="event_them"/>
                             <field name="event_organizer"/>
                             <field name="venue"/>
-                            <field name="region"/>
-                            <field name="arusha_districts" attrs="{'invisible':[('region', '!=', 'arusha')]}"/>
-                            <field name="dar_districts" attrs="{'invisible':[('region', '!=', 'dar')]}"/>
-                            <field name="dodoma_districts" attrs="{'invisible':[('region', '!=', 'dodoma')]}"/>
-                            <field name="geita_districts" attrs="{'invisible':[('region', '!=', 'geita')]}"/>
-                            <field name="iringa_districts" attrs="{'invisible':[('region', '!=', 'iringa')]}"/>
-                            <field name="kagera_districts" attrs="{'invisible':[('region', '!=', 'kagera')]}"/>
-                            <field name="katavi_districts" attrs="{'invisible':[('region', '!=', 'katavi')]}"/>
-                            <field name="kigoma_districts" attrs="{'invisible':[('region', '!=', 'kigoma')]}"/>
-                            <field name="kilimanjaro_districts"
-                                   attrs="{'invisible':[('region', '!=', 'kilimanjaro')]}"/>
-                            <field name="lindi_districts" attrs="{'invisible':[('region', '!=', 'lindi')]}"/>
-                            <field name="manyara_districts" attrs="{'invisible':[('region', '!=', 'manyara')]}"/>
-                            <field name="mara_districts" attrs="{'invisible':[('region', '!=', 'mara')]}"/>
-                            <field name="mbeya_districts" attrs="{'invisible':[('region', '!=', 'mbeya')]}"/>
-                            <field name="morogoro_districts" attrs="{'invisible':[('region', '!=', 'morogoro')]}"/>
-                            <field name="mtwara_districts" attrs="{'invisible':[('region', '!=', 'mtwara')]}"/>
-                            <field name="mwanza_districts" attrs="{'invisible':[('region', '!=', 'mwanza')]}"/>
-                            <field name="njombe_districts" attrs="{'invisible':[('region', '!=', 'njombe')]}"/>
-                            <field name="pwani_districts" attrs="{'invisible':[('region', '!=', 'pwani')]}"/>
-                            <field name="rukwa_districts" attrs="{'invisible':[('region', '!=', 'rukwa')]}"/>
-                            <field name="ruvuma_districts" attrs="{'invisible':[('region', '!=', 'ruvuma')]}"/>
-                            <field name="shinyanga_districts" attrs="{'invisible':[('region', '!=', 'shinyanga')]}"/>
-                            <field name="simiyu_districts" attrs="{'invisible':[('region', '!=', 'simiyu')]}"/>
-                            <field name="singida_districts" attrs="{'invisible':[('region', '!=', 'singida')]}"/>
-                            <field name="songwe_districts" attrs="{'invisible':[('region', '!=', 'songwe')]}"/>
-                            <field name="tabora_districts" attrs="{'invisible':[('region', '!=', 'tabora')]}"/>
-                            <field name="tanga_districts" attrs="{'invisible':[('region', '!=', 'tanga')]}"/>
+                            <field name="region_select"/>
+                            <field name="district_select"/>
                         </group>
                         <group>
                             <field name="location_name"/>
                             <field name="stakeholder"/>
                             <field name="date"/>
+                            <field name="region_select"/>
+                            <field name="district_select"/>
                         </group>
                         <group>
                             <field name="description"/>
@@ -983,23 +882,24 @@
         </field>
     </record>
 
-<!--    event action view -->
+    <!--    event action view -->
     <record id="event_action_view_id" model="ir.actions.act_window">
         <field name="name">Events</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">event</field>
         <field name="view_mode">tree,form</field>
         <field name="help" type="html">
-          <p class="o_view_nocontent_smiling_face">
-            <!-- Add Text Here -->
-          </p><p>
-            <!-- More details about what a user can do with this object will be OK -->
-            No event Created, Let create One.
-          </p>
+            <p class="o_view_nocontent_smiling_face">
+                <!-- Add Text Here -->
+            </p>
+            <p>
+                <!-- More details about what a user can do with this object will be OK -->
+                No event Created, Let create One.
+            </p>
         </field>
     </record>
 
-<!--    status tree view -->
+    <!--    status tree view -->
     <record id="status_tree_view" model="ir.ui.view">
         <field name="name">status.tree.view</field>
         <field name="model">status</field>
@@ -1010,7 +910,7 @@
         </field>
     </record>
 
-<!--    status form view -->
+    <!--    status form view -->
     <record id="status_form_view" model="ir.ui.view">
         <field name="name">status.form.view</field>
         <field name="model">status</field>
@@ -1030,19 +930,72 @@
         </field>
     </record>
 
-<!--    status action view -->
+    <!--    status action view -->
     <record id="status_action_view" model="ir.actions.act_window">
         <field name="name">Status</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">status</field>
         <field name="view_mode">tree,form</field>
         <field name="help" type="html">
-          <p class="o_view_nocontent_smiling_face">
-            <!-- Add Text Here -->
-          </p><p>
-            <!-- More details about what a user can do with this object will be OK -->
-            No status created yet, Let create one
-          </p>
+            <p class="o_view_nocontent_smiling_face">
+                <!-- Add Text Here -->
+            </p>
+            <p>
+                <!-- More details about what a user can do with this object will be OK -->
+                No status created yet, Let create one
+            </p>
+        </field>
+    </record>
+
+    <!--    region tree view -->
+    <record id="region_tree_view" model="ir.ui.view">
+        <field name="name">region.tree.view</field>
+        <field name="model">region</field>
+        <field name="arch" type="xml">
+            <tree string="Region">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <!--    region form view -->
+    <record id="region_form_view" model="ir.ui.view">
+        <field name="name">region.form.view</field>
+        <field name="model">region</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                    </group>
+                    <notebook>
+                        <page string="District">
+                            <field name="district_line_ids">
+                                <tree editable="bottom">
+                                    <field name="name"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!--    region action view -->
+    <record id="region_action_view" model="ir.actions.act_window">
+        <field name="name">Regions</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">region</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                <!-- Add Text Here -->
+            </p>
+            <p>
+                <!-- More details about what a user can do with this object will be OK -->
+                No region created, Start create
+            </p>
         </field>
     </record>
 
@@ -1059,7 +1012,8 @@
     <!-- This Menu Item must have a parent and an action -->
     <menuitem id="issues_id" name="Issues" parent="membership_root" action="issues_action_view" sequence="4"/>
     <!-- This Menu Item must have a parent and an action -->
-    <menuitem id="event_menu_action_id" name="Events" parent="membership_root" action="event_action_view_id" sequence="5"/>
+    <menuitem id="event_menu_action_id" name="Events" parent="membership_root" action="event_action_view_id"
+              sequence="5"/>
     <!-- This Menu Item must have a parent and an action -->
     <menuitem id="configuration_id" name="Configuration" parent="membership_root" sequence="6"/>
     <!-- This Menu Item must have a parent and an action -->
@@ -1085,7 +1039,10 @@
     <menuitem id="status_menu_action" name="Status" parent="configuration_id"
               action="status_action_view" sequence="7"/>
     <!-- This Menu Item must have a parent and an action -->
+    <menuitem id="region_menu_action" name="Region" parent="configuration_id"
+              action="region_action_view" sequence="8"/>
+    <!-- This Menu Item must have a parent and an action -->
     <menuitem id="contact_title_id" name="Contact Title" parent="configuration_id" action="contact_title_action_view"
-              sequence="8"/>
+              sequence="9"/>
 
 </odoo>

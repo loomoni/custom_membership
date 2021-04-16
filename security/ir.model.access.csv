@@ -34,3 +34,7 @@ access_event,Add event,model_event,,1,1,1,1
 
 access_status,Add status,model_status,,1,1,1,1
 
+access_region,Add region,model_region,,1,1,1,1
+
+access_district_lines,Add district lines,model_district_lines,,1,1,1,1
+
