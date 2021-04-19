@@ -1,4 +1,4 @@
-from odoo import http
+from odoo import http, api
 from odoo.http import request
 from odoo.addons.website_sale.controllers.main import WebsiteSale
 
@@ -35,10 +35,31 @@ class WebsiteSaleInherit(WebsiteSale):
 
 class Hospital(http.Controller):
 
+    # @api.onchange('region_rec')
+    # def _onchange_region_select_id(self):
+    #     sections = []
+    #     for section in self.region_rec:
+    #         sections.append(section.id)
+    #     return {'domain': {'district_rec': [('district_id', 'in', sections)]}}
+
+    # @api.onchange('region_rec')
     @http.route('/registration_form', type="http", auth="public", website=True)
     def members_registration_webform(self, **kw):
+        # sections = []
+        # for section in self.region_rec:
+        #     sections.append(section.id)
+        # return {'domain': {'district_rec': [('district_id', 'in', sections)]}}
         industry_rec = request.env['configuration.setting.industry'].sudo().search([])
-        return http.request.render('custom_membership.registration_template_form_id', {'industry_rec': industry_rec})
+        cluster_rec = request.env['configuration.setting.cluster'].sudo().search([])
+        region_rec = request.env['region'].sudo().search([])
+        district_rec = request.env['district.lines'].sudo().search([])
+        membership_category_rec = request.env['configuration.setting.category'].sudo().search([])
+        return http.request.render('custom_membership.registration_template_form_id', {
+            'industry_rec': industry_rec,
+            'cluster_rec': cluster_rec,
+            'region_rec': region_rec,
+            'district_rec': district_rec,
+            'membership_category_rec': membership_category_rec})
 
         # print("Execution Here.........................")
         # print("doctor_rec...", doctor_rec)

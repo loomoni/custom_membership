@@ -596,7 +596,7 @@ class Event(models.Model):
     attachment_copy = fields.Binary(string="Attachment", attachment=True,
                                     store=True, )
     attachment_copy_file_name = fields.Char('Attachment File Name')
-    
+
 
 class EngagementType(models.Model):
     _name = "engagement.type"

@@ -6,7 +6,7 @@
     'author': 'Loomoni Morwo',
     'company': 'TANZANIA PRIVATE SECTOR FOUNDATION',
     'website': "http://www.tpsftz.org/",
-    'depends': ['account', 'base', 'sale', 'board', 'base_setup', 'product', 'analytic', 'portal', 'digest'],
+    'depends': ['account', 'base', 'sale', 'board', 'base_setup', 'product', 'analytic', 'portal', 'digest', 'website', 'website_theme_install'],
     'data': [
         'security/security.xml',
         'security/ir.model.access.csv',
