@@ -501,7 +501,7 @@ class Issue(models.Model):
     #                                               ('mbeya', 'Mbeya'), ('rungwe', 'Rungwe'), ], required=False, )
     # morogoro_districts = fields.Selection(string="District", selection=[('gairo', 'Gairo'), ('kilombero', 'Kilombero'),
     #                                                                     ('kilosa', 'Kilosa'), ('morogoro', 'Morogoro'),
-    #                                                                     ('morogoro_municipal ', 'Morogoro Municipal '),
+    #                                                                     ('morogoro_municipal ', 'Morogoro Municipal'),
     #                                                                     ('mvomero', 'Mvomero'), ('ulanga', 'Ulanga'),
     #                                                                     ('malinyi', 'Malinyi'),
     #                                                                     ('ifakara', 'Ifakara'), ], required=False, )
@@ -541,7 +541,7 @@ class Issue(models.Model):
     #                                                   ('kishapu', 'Kishapu'),
     #                                                   ('shinyanga_municipal', 'Shinyanga Municipal'),
     #                                                   ('shinyanga', 'Shinyanga'), ], required=False, )
-    # simiyu_districts = fields.Selection(string="District", selection=[('bariadi ', 'Bariadi '), ('busega ', 'Busega '),
+    # simiyu_districts = fields.Selection(string="District", selection=[('bariadi ', 'Bariadi'), ('busega ', 'Busega '),
     #                                                                   ('itilima', 'Itilima'), ('maswa', 'Maswa'),
     #                                                                   ('meatu', 'Meatu'), ], required=False, )
     # singida_districts = fields.Selection(string="District",
@@ -643,5 +643,5 @@ class DistrictLine(models.Model):
     _name = 'district.lines'
     _description = 'district line table'
 
-    name = fields.Char(string="Distric", required=False, )
+    name = fields.Char(string="District", required=False, )
     district_id = fields.Many2one(comodel_name="region", string="District ID", required=False, )
